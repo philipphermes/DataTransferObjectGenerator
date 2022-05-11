@@ -2,22 +2,22 @@
 
 namespace App\GeneratedDataTransferObjects;
 
-class TestDTO 
+class UserTest 
 {
-	private string $username;
+	private int $id;
 
 	private string $email;
 
 	private string $password;
 
-	public function getUsername(): string
+	public function getId(): int
 	{
-		return $this->username;
+		return $this->id;
 	}
 
-	public function setUsername(string $username): self
+	public function setId(int $id): self
 	{
-		$this->username = $username;
+		$this->id = $id;
 
 		return $this;
 	}

@@ -2,52 +2,34 @@
 
 require __DIR__ . "/vendor/autoload.php";
 
-$fileName = 'TestDTO';
+use App\Generator\GeneratorSetup;
+use App\Generator\GeneratorSetupDTO;
+use App\Generator\GeneratorProperty;
+use App\Generator\GeneratorConstants;
+use App\Generator;
 
-$generatedDTOPath = 'src/GeneratedDataTransferObjects';
+$generator = new Generator();
 
-if (!file_exists($generatedDTOPath)
-    && !mkdir($generatedDTOPath, 0777, true)
-    && !is_dir($generatedDTOPath)) {
-    throw new \RuntimeException(sprintf('Directory "%s" was not created', $generatedDTOPath));
-}
+$generatorSetup = new GeneratorSetup();
+$generatorSetup
+    ->setFolderPath('src/GeneratedDataTransferObjects')
+    ->setSrcNamespace('App');
 
-$parameters = [
-    0 => [
-        'name' => 'username',
-        'type' => 'string'
-    ],
-    1 => [
-        'name' => 'email',
-        'type' => 'string'
-    ],
-    2 => [
-        'name' => 'password',
-        'type' => 'string'
-    ],
-];
+$generatorSetupDTO = new GeneratorSetupDTO();
+$generatorSetupDTO
+    ->setClassName('UserTest')
+    ->addProperty((new GeneratorProperty())->setName('id')->setType(GeneratorConstants::INT))
+    ->addProperty((new GeneratorProperty())->setName('email')->setType(GeneratorConstants::STRING))
+    ->addProperty((new GeneratorProperty())->setName('password')->setType(GeneratorConstants::STRING));
 
-$path = sprintf('%s/%s.php', $generatedDTOPath, $fileName);
+$generator->generate($generatorSetup, $generatorSetupDTO);
 
-$namespace = str_replace(['src', '/'], ['App', '\\'], $generatedDTOPath);
+$generatorSetupDTO = new GeneratorSetupDTO();
+$generatorSetupDTO
+    ->setClassName('ProductTest')
+    ->addProperty((new GeneratorProperty())->setName('id')->setType(GeneratorConstants::INT))
+    ->addProperty((new GeneratorProperty())->setName('name')->setType(GeneratorConstants::STRING))
+    ->addProperty((new GeneratorProperty())->setName('price')->setType(GeneratorConstants::FLOAT))
+    ->addProperty((new GeneratorProperty())->setName('quantity')->setType(GeneratorConstants::INT));
 
-$base = sprintf("<?php\n\nnamespace %s;\n\nclass %s \n{\n", $namespace, $fileName);
-
-foreach ($parameters as $parameter) {
-    $base .= sprintf("\tprivate %s \$%s;\n\n", $parameter['type'], $parameter['name']);
-}
-
-foreach ($parameters as $key => $parameter) {
-    $base .= sprintf("\tpublic function get%s(): %s\n\t{\n\t\treturn \$this->%s;\n\t}\n\n", ucfirst($parameter['name']), $parameter['type'], $parameter['name']);
-    $base .= sprintf("\tpublic function set%s(%s \$%s): self\n\t{\n\t\t\$this->%s = \$%s;\n\n\t\treturn \$this;\n\t}", ucfirst($parameter['name']), $parameter['type'], $parameter['name'], $parameter['name'], $parameter['name']);
-
-    if(($key+1) !== count($parameters)) {
-        $base .= "\n\n";
-    }
-}
-
-$base .= "\n}";
-
-$dto = fopen($path, "w");
-fwrite($dto, $base);
-fclose($dto);
+$generator->generate($generatorSetup, $generatorSetupDTO);
