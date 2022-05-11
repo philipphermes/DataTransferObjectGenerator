@@ -1,7 +1,5 @@
 # BASIC USAGE:
 
-## Tutorial:
-
 ### Setup Generator:
 1. Crate Setup: `$generatorSetup = new GeneratorSetup();`
 2. Setup: `$generatorSetup->setFolderPath('src/GeneratedDataTransferObjects')->setSrcNamespace('App');`
