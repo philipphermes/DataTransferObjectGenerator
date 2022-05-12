@@ -27,8 +27,8 @@ $generator->generate($generatorSetup, $generatorSetupDTO);
 $generatorSetupDTO = new GeneratorSetupDTO();
 $generatorSetupDTO
     ->setClassName('ProductTest')
-    ->addProperty((new GeneratorProperty())->setName('id')->setType(GeneratorConstants::INT))
-    ->addProperty((new GeneratorProperty())->setName('name')->setType(GeneratorConstants::STRING))
+    ->addProperty((new GeneratorProperty())->setName('testList')->setType(\App\Test\Test::class)->setIsObjectArray())
+    ->addProperty((new GeneratorProperty())->setName('test')->setType(\App\Test\Test::class))
     ->addProperty((new GeneratorProperty())->setName('price')->setType(GeneratorConstants::FLOAT))
     ->addProperty((new GeneratorProperty())->setName('quantity')->setType(GeneratorConstants::INT));
 

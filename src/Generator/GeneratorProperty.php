@@ -8,6 +8,8 @@ class GeneratorProperty implements GeneratorPropertyInterface
 
     private string $type;
 
+    private bool $isObjectArray;
+
     public function getName(): string
     {
         return $this->name;
@@ -28,6 +30,18 @@ class GeneratorProperty implements GeneratorPropertyInterface
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function isObjectArray(): bool
+    {
+        return $this->isObjectArray ?? false;
+    }
+
+    public function setIsObjectArray(): self
+    {
+        $this->isObjectArray = true;
 
         return $this;
     }

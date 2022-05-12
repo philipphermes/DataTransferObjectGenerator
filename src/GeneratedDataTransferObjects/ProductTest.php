@@ -4,34 +4,49 @@ namespace App\GeneratedDataTransferObjects;
 
 class ProductTest 
 {
-	private int $id;
+	/** @var \App\Test\Test[] $testList*/
+	private array $testList;
 
-	private string $name;
+	private \App\Test\Test $test;
 
 	private float $price;
 
 	private int $quantity;
 
-	public function getId(): int
+	/** 
+	 * @return \App\Test\Test[]
+	 */
+	public function getTestList(): array
 	{
-		return $this->id;
+		return $this->testList;
 	}
 
-	public function setId(int $id): self
+	/** 
+	 * @param \App\Test\Test[] $testList
+	 * @return $this
+	 */
+	public function setTestList(array $testList): self
 	{
-		$this->id = $id;
+		$this->testList = $testList;
 
 		return $this;
 	}
 
-	public function getName(): string
+	public function addTest(\App\Test\Test $test): self
 	{
-		return $this->name;
+		$this->testList[] = $test;
+
+		return $this;
 	}
 
-	public function setName(string $name): self
+	public function getTest(): \App\Test\Test
 	{
-		$this->name = $name;
+		return $this->test;
+	}
+
+	public function setTest(\App\Test\Test $test): self
+	{
+		$this->test = $test;
 
 		return $this;
 	}

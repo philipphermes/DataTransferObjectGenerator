@@ -9,4 +9,6 @@ class GeneratorConstants
     public const INT = 'int';
 
     public const FLOAT = 'float';
+
+    public const ARRAY = 'array';
 }

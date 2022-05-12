@@ -21,26 +21,80 @@ class GeneratorCreate implements GeneratorCreateInterface
         $classPath = sprintf('%s/%s.php', $folderPath, $className);
         $classNamespace = str_replace(['src', '/'], [$srcNamespace, '\\'], $folderPath);
 
-        $base = sprintf("<?php\n\nnamespace %s;\n\nclass %s \n{\n", $classNamespace, $className);
+        $classValue = sprintf("<?php\n\nnamespace %s;\n\nclass %s \n{\n", $classNamespace, $className);
 
         /** @var GeneratorPropertyInterface $property */
         foreach ($properties as $property) {
-            $base .= sprintf("\tprivate %s \$%s;\n\n", $property->getType(), $property->getName());
-        }
+            if(strpos($property->getType(), "\\")) {
+                $property->setType("\\" . $property->getType());
+            }
 
-        foreach ($properties as $key => $property) {
-            $base .= sprintf("\tpublic function get%s(): %s\n\t{\n\t\treturn \$this->%s;\n\t}\n\n", ucfirst($property->getName()), $property->getType(), $property->getName());
-            $base .= sprintf("\tpublic function set%s(%s \$%s): self\n\t{\n\t\t\$this->%s = \$%s;\n\n\t\treturn \$this;\n\t}", ucfirst($property->getName()), $property->getType(), $property->getName(), $property->getName(), $property->getName());
-
-            if(($key+1) !== count($properties)) {
-                $base .= "\n\n";
+            if($property->isObjectArray()) {
+                $classValue .= sprintf("\t/** @var %s[] \$%s*/\n", $property->getType(), $property->getName());
+                $classValue .= sprintf("\tprivate array \$%s;\n\n", $property->getName());
+            } else {
+                $classValue .= sprintf("\tprivate %s \$%s;\n\n", $property->getType(), $property->getName());
             }
         }
 
-        $base .= "\n}";
+        foreach ($properties as $key => $property) {
+
+            //Get
+            if($property->isObjectArray()) {
+                $classValue .= sprintf("\t/** \n\t * @return %s[]\n\t */\n", $property->getType());
+            }
+            $classValue .= sprintf("\tpublic function get%s(): ", ucfirst($property->getName()));
+
+            if($property->isObjectArray()) {
+                $classValue .= "array\n\t";
+            } else {
+                $classValue .= sprintf("%s\n\t", $property->getType());
+            }
+
+            $classValue .= sprintf("{\n\t\treturn \$this->%s;\n\t}\n\n", $property->getName());
+
+            //Set
+            if($property->isObjectArray()) {
+                $classValue .= sprintf("\t/** \n\t * @param %s[] \$%s\n", $property->getType(), $property->getName());
+                $classValue .= "\t * @return \$this\n";
+                $classValue .= "\t */\n";
+            }
+            $classValue .= sprintf("\tpublic function set%s", ucfirst($property->getName()));
+
+            if($property->isObjectArray()) {
+                $classValue .= "(array ";
+            } else {
+                $classValue .= sprintf("(%s ", $property->getType());
+            }
+
+            $classValue .= sprintf("\$%s): self\n\t{\n\t\t\$this->%s = \$%s;\n\n\t\treturn \$this;\n\t}", $property->getName(), $property->getName(), $property->getName());
+
+            if(($key+1) !== count($properties)) {
+                $classValue .= "\n\n";
+            }
+
+            //Add
+            if($property->getType() !== GeneratorConstants::ARRAY && !$property->isObjectArray()) {
+                continue;
+            }
+
+            $addName = str_replace(["List", "Array"], "", $property->getName());
+
+            $classValue .= sprintf("\tpublic function add%s", ucfirst($addName));
+
+            $classValue .= sprintf("(%s ", $property->getType());
+
+            $classValue .= sprintf("\$%s): self\n\t{\n\t\t\$this->%s[] = \$%s;\n\n\t\treturn \$this;\n\t}", $addName, $property->getName(), $addName);
+
+            if(($key+1) !== count($properties)) {
+                $classValue .= "\n\n";
+            }
+        }
+
+        $classValue .= "\n}";
 
         $classFile = fopen($classPath, 'wb');
-        fwrite($classFile, $base);
+        fwrite($classFile, $classValue);
         fclose($classFile);
     }
 }
