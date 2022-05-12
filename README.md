@@ -1,4 +1,7 @@
-# BASIC USAGE:
+# USAGE:
+
+First you'll have to create a basic php file where you call the Generator\
+If everything is set up you can call the file in the terminal with `php generator.php` for example.
 
 ### Setup Generator:
 
