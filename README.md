@@ -44,7 +44,7 @@ If everything is set up you can call the file in the terminal with `php generato
 
 `$generator = new Generator();`\
 `$generator->generate($generatorSetup, $generatorSetupDTO);`
-
+---
 ### TODOS
 * Validate user input for errors
 * Type Array
