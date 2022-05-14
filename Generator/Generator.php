@@ -1,10 +1,9 @@
 <?php
 
-namespace App;
 
-use App\Generator\GeneratorCreate;
-use App\Generator\GeneratorSetupDTOInterface;
-use App\Generator\GeneratorSetupInterface;
+use Business\GeneratorCreate;
+use Business\GeneratorSetupDTOInterface;
+use Business\GeneratorSetupInterface;
 
 class Generator implements GeneratorInterface
 {

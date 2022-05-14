@@ -1,9 +1,7 @@
 <?php
 
-namespace App;
-
-use App\Generator\GeneratorSetupDTOInterface;
-use App\Generator\GeneratorSetupInterface;
+use Business\GeneratorSetupDTOInterface;
+use Business\GeneratorSetupInterface;
 
 interface GeneratorInterface
 {

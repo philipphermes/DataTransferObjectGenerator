@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Generator;
+namespace Business;
 
 interface GeneratorSetupDTOInterface
 {
