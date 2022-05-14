@@ -8,25 +8,27 @@ If everything is set up you can call the file in the terminal with `php generato
 `$generatorSetup = new GeneratorSetup();`\
 `$generatorSetup->setFolderPath('src/GeneratedDataTransferObjects')`\
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`->setSrcNamespace('App');`\
-    * src namespace is for when the namespace form src isn't src but something else like App
+
+#### Notes:
+* src namespace is for when the namespace form src isn't src but something else like App
 
 ### Setup Property:
 `$generatorProperty = new GeneratorProperty();`\
 `$generatorProperty->setName('id')`\
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`->setType(GeneratorConstants::INT);`
 
-When it is list of objects:
+#### When it is list of objects:
 
 `$generatorProperty = new GeneratorProperty();`\
 `$generatorProperty->setName('ObjectList')`\
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`->setType(Object::class)`\
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`->setIsObjectArray();`
 
-Notes: 
+#### Notes: 
 * will generate an additional method Add...() to add single Objects same with type array
 * List must be called ...List or ...Array
 
-Types:
+#### Types:
 * STRING
 * INT
 * FLOAT
