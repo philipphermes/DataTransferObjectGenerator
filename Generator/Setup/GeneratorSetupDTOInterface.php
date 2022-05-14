@@ -1,7 +1,5 @@
 <?php
 
-namespace Business;
-
 interface GeneratorSetupDTOInterface
 {
     public function getClassName(): string;

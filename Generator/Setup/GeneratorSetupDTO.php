@@ -1,7 +1,5 @@
 <?php
 
-namespace Business;
-
 class GeneratorSetupDTO implements GeneratorSetupDTOInterface
 {
     private string $className;

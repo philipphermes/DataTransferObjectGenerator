@@ -1,7 +1,5 @@
 <?php
 
-namespace Business;
-
 class GeneratorCreate implements GeneratorCreateInterface
 {
     public function create(GeneratorSetupInterface $generatorSetup, GeneratorSetupDTOInterface $generatorSetupDTO): void

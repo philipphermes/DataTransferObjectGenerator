@@ -1,7 +1,5 @@
 <?php
 
-namespace Business;
-
 class GeneratorProperty implements GeneratorPropertyInterface
 {
     private string $name;

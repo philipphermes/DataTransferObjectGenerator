@@ -1,7 +1,5 @@
 <?php
 
-namespace Business;
-
 interface GeneratorSetupInterface
 {
     public function getFolderPath(): string;

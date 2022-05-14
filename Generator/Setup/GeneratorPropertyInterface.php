@@ -1,7 +1,5 @@
 <?php
 
-namespace Business;
-
 interface GeneratorPropertyInterface
 {
     public function getName(): string;

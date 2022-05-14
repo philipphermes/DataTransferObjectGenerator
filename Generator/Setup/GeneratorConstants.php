@@ -1,7 +1,5 @@
 <?php
 
-namespace Business;
-
 class GeneratorConstants
 {
     public const STRING = 'string';
