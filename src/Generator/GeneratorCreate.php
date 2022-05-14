@@ -74,7 +74,7 @@ class GeneratorCreate implements GeneratorCreateInterface
             }
 
             //Add
-            if($property->getType() !== GeneratorConstants::ARRAY && !$property->isObjectArray()) {
+            if(!$property->isObjectArray()) {
                 continue;
             }
 

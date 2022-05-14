@@ -9,7 +9,7 @@ class ProductTest
 
 	private \App\Test\Test $test;
 
-	private float $price;
+	private array $attributes;
 
 	private int $quantity;
 
@@ -51,14 +51,14 @@ class ProductTest
 		return $this;
 	}
 
-	public function getPrice(): float
+	public function getAttributes(): array
 	{
-		return $this->price;
+		return $this->attributes;
 	}
 
-	public function setPrice(float $price): self
+	public function setAttributes(array $attributes): self
 	{
-		$this->price = $price;
+		$this->attributes = $attributes;
 
 		return $this;
 	}

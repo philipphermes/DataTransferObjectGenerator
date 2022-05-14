@@ -25,7 +25,7 @@ If everything is set up you can call the file in the terminal with `php generato
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`->setIsObjectArray();`
 
 #### Notes: 
-* will generate an additional method Add...() to add single Objects same with type array
+* will generate an additional method Add...() to add single Objects
 * List must be called ...List or ...Array
 
 #### Types:
@@ -49,4 +49,3 @@ If everything is set up you can call the file in the terminal with `php generato
 
 ### TODOS
 * Validate user input for errors
-* Type Array

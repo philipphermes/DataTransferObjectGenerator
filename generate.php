@@ -29,7 +29,7 @@ $generatorSetupDTO
     ->setClassName('ProductTest')
     ->addProperty((new GeneratorProperty())->setName('testList')->setType(\App\Test\Test::class)->setIsObjectArray())
     ->addProperty((new GeneratorProperty())->setName('test')->setType(\App\Test\Test::class))
-    ->addProperty((new GeneratorProperty())->setName('price')->setType(GeneratorConstants::FLOAT))
+    ->addProperty((new GeneratorProperty())->setName('attributes')->setType(GeneratorConstants::ARRAY))
     ->addProperty((new GeneratorProperty())->setName('quantity')->setType(GeneratorConstants::INT));
 
 $generator->generate($generatorSetup, $generatorSetupDTO);
