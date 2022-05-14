@@ -45,6 +45,9 @@ If everything is set up you can call the file in the terminal with `php generato
 `$generator = new Generator();`\
 `$generator->generate($generatorSetup, $generatorSetupDTO);`
 
+### Tutorial Repository
+https://github.com/philipphermes/DataTransferObjectGenerator/tree/tutorial
+
 ---
 
 ### TODOS
