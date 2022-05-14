@@ -1,47 +1,48 @@
-<!--
-[![Total Downloads](http://poser.pugx.org/phpunit/phpunit/downloads)](https://packagist.org/packages/phpunit/phpunit)
-[![License](http://poser.pugx.org/phpunit/phpunit/license)](https://packagist.org/packages/phpunit/phpunit)
-[![Version](http://poser.pugx.org/phpunit/phpunit/version)](https://packagist.org/packages/phpunit/phpunit)
-[![PHP Version Require](http://poser.pugx.org/phpunit/phpunit/require/php)](https://packagist.org/packages/phpunit/phpunit)
-
--->
 # USAGE:
 
-First you'll have to create a basic php file where you call the Generator\
+First you'll have to create a basic php file in the root of the project where you call the Generator\
 If everything is set up you can call the file in the terminal with `php generator.php` for example.
 
 ### Setup Generator:
 
-1. Crate Setup: `$generatorSetup = new GeneratorSetup();`
-2. Setup: `$generatorSetup->setFolderPath('src/GeneratedDataTransferObjects')->setSrcNamespace('App');`
+`$generatorSetup = new GeneratorSetup();`\
+`$generatorSetup->setFolderPath('src/GeneratedDataTransferObjects')`\
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`->setSrcNamespace('App');`\
     * src namespace is for when the namespace form src isn't src but something else like App
 
-### Setup DTO:
+### Setup Property:
+`$generatorProperty = new GeneratorProperty();`\
+`$generatorProperty->setName('id')`\
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`->setType(GeneratorConstants::INT);`
 
-1. Crate Setup: `$generatorSetupDTO = new GeneratorSetupDTO();`
-2. Setup: `$generatorSetupDTO->setClassName('UserTest')`\
-   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`->addProperty((new GeneratorProperty())->setName('id')->setType(GeneratorConstants::INT));`
-3. Use GeneratorConstants for types `GeneratorConstants::INT` for int
+When it is list of objects:
+
+`$generatorProperty = new GeneratorProperty();`\
+`$generatorProperty->setName('ObjectList')`\
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`->setType(Object::class)`\
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`->setIsObjectArray();`
+
+Notes: 
+* will generate an additional method Add...() to add single Objects same with type array
+* List must be called ...List or ...Array
+
+Types:
+* STRING
+* INT
+* FLOAT
+* ARRAY
+* Custom Object
+
+### Setup DTO:
+`$generatorSetupDTO = new GeneratorSetupDTO();`\
+`$generatorSetupDTO->setClassName('UserTest')`\
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`->addProperty($generatorProperty);`
 
 ### Generate:
 
-1. Create Generator: `$generator = new Generator();`
-2. Generate: `$generator->generate($generatorSetup, $generatorSetupDTO);`
-
-### Properties & Objects:
-
-* Set Property to Object:\
-  `$generatorSetupDTO = new GeneratorSetupDTO();`\
-  `$generatorSetupDTO`\
-  &emsp;&emsp;&emsp;`->setClassName('ProductTest')`\
-  &emsp;&emsp;&emsp;`->addProperty((new GeneratorProperty())->setName('testList')->setType(\App\Test\Test::class);`
-* Create array with Objects: \
-  `$generatorSetupDTO = new GeneratorSetupDTO();`\
-  `$generatorSetupDTO`\
-  &emsp;&emsp;&emsp;`->setClassName('ProductTest')`\
-  &emsp;&emsp;&emsp;`->addProperty((new GeneratorProperty())->setName('testList')->setType(\App\Test\Test::class)->setIsObjectArray());`
-  * Note: will generate an additional method Add...() to add single Objects same with type array
-  * List musste be calles ...List or ...Array
+`$generator = new Generator();`\
+`$generator->generate($generatorSetup, $generatorSetupDTO);`
 
 ### TODOS
 * Validate user input for errors
+* Type Array
