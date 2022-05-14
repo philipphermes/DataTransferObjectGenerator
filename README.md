@@ -3,6 +3,8 @@
 First you'll have to create a basic php file in the root of the project where you call the Generator\
 If everything is set up you can call the file in the terminal with `php generator.php` for example.
 
+You have to change the namespace of the files to make it work at the moment!
+
 ### Setup Generator:
 
 `$generatorSetup = new GeneratorSetup();`\
@@ -45,10 +47,8 @@ If everything is set up you can call the file in the terminal with `php generato
 `$generator = new Generator();`\
 `$generator->generate($generatorSetup, $generatorSetupDTO);`
 
-### Tutorial Repository
-https://github.com/philipphermes/DataTransferObjectGenerator/tree/tutorial
-
 ---
 
 ### TODOS
 * Validate user input for errors
+* Namespace

@@ -1,5 +1,7 @@
 <?php
 
+namespace Generator\Setup;
+
 class GeneratorCreate implements GeneratorCreateInterface
 {
     public function create(GeneratorSetupInterface $generatorSetup, GeneratorSetupDTOInterface $generatorSetupDTO): void

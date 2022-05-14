@@ -1,5 +1,7 @@
 <?php
 
+namespace Generator\Setup;
+
 interface GeneratorSetupInterface
 {
     public function getFolderPath(): string;

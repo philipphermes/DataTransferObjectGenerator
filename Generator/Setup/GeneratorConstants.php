@@ -1,5 +1,7 @@
 <?php
 
+namespace Generator\Setup;
+
 class GeneratorConstants
 {
     public const STRING = 'string';

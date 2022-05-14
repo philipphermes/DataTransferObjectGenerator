@@ -1,5 +1,7 @@
 <?php
 
+namespace Generator\Setup;
+
 class GeneratorSetupDTO implements GeneratorSetupDTOInterface
 {
     private string $className;

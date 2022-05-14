@@ -1,5 +1,7 @@
 <?php
 
+namespace Generator\Setup;
+
 class GeneratorProperty implements GeneratorPropertyInterface
 {
     private string $name;

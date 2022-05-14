@@ -1,5 +1,7 @@
 <?php
 
+namespace Generator\Setup;
+
 class GeneratorSetup implements GeneratorSetupInterface
 {
     private string $folderPath;

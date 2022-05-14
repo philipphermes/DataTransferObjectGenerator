@@ -1,5 +1,7 @@
 <?php
 
+namespace Generator\Setup;
+
 interface GeneratorSetupDTOInterface
 {
     public function getClassName(): string;

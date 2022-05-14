@@ -1,5 +1,7 @@
 <?php
 
+namespace Generator\Setup;
+
 interface GeneratorPropertyInterface
 {
     public function getName(): string;
